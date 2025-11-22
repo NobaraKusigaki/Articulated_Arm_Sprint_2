@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.PS5Controller;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.commands.DriveCommand;
+import frc.robot.commands.Drive.DriveCommand;
 import frc.robot.subsystems.Locomotion.DriveSubsystem;
 import frc.robot.subsystems.Score.ExtenderManager;
 import frc.robot.subsystems.Score.PivotManager;
