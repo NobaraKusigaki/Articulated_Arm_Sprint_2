@@ -4,8 +4,8 @@ import edu.wpi.first.wpilibj.PS5Controller;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.subsystems.ExtenderManager;
-import frc.robot.subsystems.PivotManager;
+import frc.robot.subsystems.Score.ExtenderManager;
+import frc.robot.subsystems.Score.PivotManager;
 
 public class RobotContainer {
 
