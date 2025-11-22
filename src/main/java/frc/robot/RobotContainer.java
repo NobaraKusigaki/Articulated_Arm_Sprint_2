@@ -1,14 +1,20 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PS5Controller;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.commands.DriveCommand;
+import frc.robot.subsystems.Locomotion.DriveSubsystem;
 import frc.robot.subsystems.Score.ExtenderManager;
 import frc.robot.subsystems.Score.PivotManager;
 
 public class RobotContainer {
 
+    private final DriveSubsystem SubSys = new DriveSubsystem();
+
+    private final Joystick robotController = new Joystick(Constants.robotController_ID);
     private final PS5Controller systemController = new PS5Controller(Constants.CONTROLLER_SYTEM_ID);
 
     private final PivotManager pivotManager = new PivotManager();
@@ -16,6 +22,8 @@ public class RobotContainer {
 
     public RobotContainer() {
         configureBindings();
+        DriveCommand DefaultDrive = new DriveCommand(SubSys, robotController);
+        SubSys.setDefaultCommand(DefaultDrive);
     }
 
     private void configureBindings() {
