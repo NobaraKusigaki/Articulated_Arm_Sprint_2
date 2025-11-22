@@ -3,8 +3,8 @@ package frc.commands;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Calcs;
 import frc.robot.Constants;
-import frc.MathFunctions.Calcs;
 import frc.robot.subsystems.Locomotion.DriveSubsystem;
 
 public class DriveCommand extends Command {

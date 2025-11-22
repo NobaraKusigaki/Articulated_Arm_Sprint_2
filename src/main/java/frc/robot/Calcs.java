@@ -1,6 +1,4 @@
-package frc.MathFunctions;
-
-import frc.robot.Constants;
+package frc.robot;
 
 public class Calcs {
     private boolean LeftAnalog = true;
