@@ -1,0 +1,73 @@
+package frc.robot;
+
+import edu.wpi.first.wpilibj.PS5Controller;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.subsystems.ExtenderManager;
+import frc.robot.subsystems.PivotManager;
+
+public class RobotContainer {
+
+    private final PS5Controller systemController = new PS5Controller(Constants.CONTROLLER_SYTEM_ID);
+
+    private final PivotManager pivotManager = new PivotManager();
+    private final ExtenderManager extenderManager = new ExtenderManager();
+
+    public RobotContainer() {
+        configureBindings();
+    }
+
+    private void configureBindings() {
+
+        // ======================= PIVOT =======================
+        
+        // ZERO
+        new Trigger(() -> systemController.getL1Button())
+            .onTrue(new InstantCommand(() -> pivotManager.moveToZeroPosition()));
+
+        // TARGET
+        new Trigger(() -> systemController.getR1Button())
+            .onTrue(new InstantCommand(() -> pivotManager.moveToTargetPosition()));
+
+        // ===================== EXTENDER ======================
+        
+        new Trigger(() -> systemController.getSquareButton())
+            .onTrue(new InstantCommand(() -> extenderManager.calibrateMin()));
+
+        new Trigger(() -> systemController.getTriangleButton())
+            .onTrue(new InstantCommand(() -> extenderManager.calibrateMax()));
+
+        // ===== AUTOMÁTICO =====
+        // Círculo ir para MAX
+        new Trigger(() -> systemController.getCircleButton())
+            .onTrue(new InstantCommand(() -> extenderManager.goToMax()));
+
+        // X ir para MIN
+        new Trigger(() -> systemController.getCrossButton())
+            .onTrue(new InstantCommand(() -> extenderManager.goToMin()));
+
+        
+        new Trigger(() -> Math.abs(systemController.getR2Axis() - systemController.getL2Axis()) > 0.05)
+            .whileTrue(new RunCommand(() -> {
+                extenderManager.setManual();
+                double power = systemController.getR2Axis() - systemController.getL2Axis();
+                extenderManager.setManualPower(power); 
+            }))
+            .onFalse(new InstantCommand(() -> extenderManager.stopManual()));
+    }
+
+    public void periodic() {
+        pivotManager.periodic();
+        extenderManager.periodic();  
+    }
+
+    public PivotManager getPivotManager() {
+        return pivotManager;
+    }
+
+    public ExtenderManager getExtenderManager() {
+        return extenderManager;
+    }
+}
+
