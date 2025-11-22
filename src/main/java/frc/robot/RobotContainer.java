@@ -2,10 +2,13 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PS5Controller;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.commands.DriveCommand;
+import frc.robot.commands.DriveCommand;
+import frc.robot.commands.TagFollower;
 import frc.robot.subsystems.Locomotion.DriveSubsystem;
 import frc.robot.subsystems.Score.ExtenderManager;
 import frc.robot.subsystems.Score.PivotManager;
@@ -76,6 +79,14 @@ public class RobotContainer {
 
     public ExtenderManager getExtenderManager() {
         return extenderManager;
+    }
+
+    public Command getAutonomousCommand() {
+    SequentialCommandGroup auto = new SequentialCommandGroup(
+      new TagFollower(SubSys, 0.275)
+    );
+    
+    return auto;
     }
 }
 
