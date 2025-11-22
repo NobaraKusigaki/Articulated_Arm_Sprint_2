@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.AutoLocomotion;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;

@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.commands.TagFollower;
+import frc.robot.commands.AutoLocomotion.TagFollower;
 import frc.robot.commands.Drive.DriveCommand;
 import frc.robot.subsystems.Locomotion.DriveSubsystem;
 import frc.robot.subsystems.Score.ExtenderManager;
