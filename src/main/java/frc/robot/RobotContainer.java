@@ -11,6 +11,7 @@ import frc.robot.commands.AutoLocomotion.TagFollower;
 import frc.robot.commands.Drive.DriveCommand;
 import frc.robot.subsystems.Locomotion.DriveSubsystem;
 import frc.robot.subsystems.Score.ExtenderManager;
+import frc.robot.subsystems.Score.IntakeManager;
 import frc.robot.subsystems.Score.PivotManager;
 
 public class RobotContainer {
@@ -22,6 +23,7 @@ public class RobotContainer {
 
     private final PivotManager pivotManager = new PivotManager();
     private final ExtenderManager extenderManager = new ExtenderManager();
+    private final IntakeManager intakeManager = new IntakeManager();
 
     public RobotContainer() {
         configureBindings();
@@ -42,7 +44,8 @@ public class RobotContainer {
             .onTrue(new InstantCommand(() -> pivotManager.moveToTargetPosition()));
 
         // ===================== EXTENDER ======================
-        
+
+        // ====== CALIBRAÇÃO ====== 
         new Trigger(() -> systemController.getSquareButton())
             .onTrue(new InstantCommand(() -> extenderManager.calibrateMin()));
 
@@ -58,14 +61,25 @@ public class RobotContainer {
         new Trigger(() -> systemController.getCrossButton())
             .onTrue(new InstantCommand(() -> extenderManager.goToMin()));
 
-        
-        new Trigger(() -> Math.abs(systemController.getR2Axis() - systemController.getL2Axis()) > 0.05)
-            .whileTrue(new RunCommand(() -> {
-                extenderManager.setManual();
-                double power = systemController.getR2Axis() - systemController.getL2Axis();
-                extenderManager.setManualPower(power); 
-            }))
-            .onFalse(new InstantCommand(() -> extenderManager.stopManual()));
+        // ======== MANUAL ========  
+
+        // new Trigger(() -> Math.abs(systemController.getR2Axis() - systemController.getL2Axis()) > 0.05)
+        //     .whileTrue(new RunCommand(() -> {
+        //         extenderManager.setManual();
+        //         double power = systemController.getR2Axis() - systemController.getL2Axis();
+        //         extenderManager.setManualPower(power); 
+        //     }))
+        //     .onFalse(new InstantCommand(() -> extenderManager.stopManual()));
+
+            //======== INTAKE ======== 
+    new Trigger(() -> systemController.getR1Button())
+    .whileTrue(new RunCommand(() -> intakeManager.intakeIn()))
+    .onFalse(new InstantCommand(() -> intakeManager.stop()));
+
+new Trigger(() -> systemController.getL1Button())
+    .whileTrue(new RunCommand(() -> intakeManager.intakeOut()))
+    .onFalse(new InstantCommand(() -> intakeManager.stop()));
+
     }
 
     public void periodic() {

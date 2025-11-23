@@ -59,4 +59,5 @@ public final class Constants {
     public static final double EXTENDER_TOLERANCE = 0.3;
     
     public static final int CONTROLLER_SYTEM_ID = 1;
+    public static final int INTAKE_MOTOR_ID = 0;
 }
