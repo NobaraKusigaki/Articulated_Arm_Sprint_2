@@ -3,9 +3,10 @@ package frc.robot.subsystems.Score;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class ExtenderManager {
+public class ExtenderManager extends SubsystemBase {
 
     public enum ExtenderState {
         DISABLED,
@@ -124,7 +125,12 @@ public class ExtenderManager {
         }
     }
 
-    public ExtenderSubsystem getSubsystem() {
-        return extender;
+    public double getPosition() {
+        return extender.getPosition();
     }
+    
+    public ExtenderState getCurrentState() {
+        return currentState;
+    }
+    
 }

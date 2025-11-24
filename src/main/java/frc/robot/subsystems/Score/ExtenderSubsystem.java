@@ -7,12 +7,12 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class ExtenderSubsystem {
+public class ExtenderSubsystem extends SubsystemBase {
 
-    private final SparkMax extenderMotor =
-        new SparkMax(Constants.EXTENDER_MOTOR_ID, MotorType.kBrushless);
+    private final SparkMax extenderMotor = new SparkMax(Constants.EXTENDER_MOTOR_ID, MotorType.kBrushless);
 
     public ExtenderSubsystem() {
         SparkMaxConfig extend_Config = new SparkMaxConfig();

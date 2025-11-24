@@ -4,9 +4,10 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class PivotManager {
+public class PivotManager  extends SubsystemBase {
 
     public enum ControlState { 
         DISABLED, MANUAL, AUTOMATIC }
@@ -125,10 +126,6 @@ public class PivotManager {
 
     public ControlState getCurrentState() {
         return currentState;
-    }
-
-    public PivotSubsystem getSubsystem() {
-        return pivot;
     }
 
     public void calibrateZero() {

@@ -72,13 +72,14 @@ public class RobotContainer {
         //     .onFalse(new InstantCommand(() -> extenderManager.stopManual()));
 
             //======== INTAKE ======== 
-    new Trigger(() -> systemController.getR1Button())
-    .whileTrue(new RunCommand(() -> intakeManager.intakeIn()))
-    .onFalse(new InstantCommand(() -> intakeManager.stop()));
 
-new Trigger(() -> systemController.getL1Button())
-    .whileTrue(new RunCommand(() -> intakeManager.intakeOut()))
-    .onFalse(new InstantCommand(() -> intakeManager.stop()));
+        new Trigger(() -> systemController.getR1Button())
+        .whileTrue(new RunCommand(() -> intakeManager.intakeIn(0.7)))
+        .onFalse(new InstantCommand(() -> intakeManager.stop()));
+
+        new Trigger(() -> systemController.getL1Button())
+        .whileTrue(new RunCommand(() -> intakeManager.intakeOut(-0.7)))
+        .onFalse(new InstantCommand(() -> intakeManager.stop()));
 
     }
 

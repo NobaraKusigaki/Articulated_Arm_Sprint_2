@@ -27,6 +27,8 @@ public final class Constants {
     // ====== ARM MOTOR IDS ======
     public static final int ARM_MOTOR_ID = 5 ;
     public static final int EXTENDER_MOTOR_ID = 6;
+    public static final int INTAKE_MOTOR_ID = 7;
+    
     public static final int ABS_ENCODER_ID = 4;
 
     // ====== PID CONSTANTS ======
@@ -59,5 +61,5 @@ public final class Constants {
     public static final double EXTENDER_TOLERANCE = 0.3;
     
     public static final int CONTROLLER_SYTEM_ID = 1;
-    public static final int INTAKE_MOTOR_ID = 0;
+    
 }

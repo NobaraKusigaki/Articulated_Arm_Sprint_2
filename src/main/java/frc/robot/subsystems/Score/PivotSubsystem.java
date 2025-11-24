@@ -8,9 +8,10 @@ import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class PivotSubsystem {
+public class PivotSubsystem  extends SubsystemBase {
     private final SparkMax armMotor = new SparkMax(Constants.ARM_MOTOR_ID, MotorType.kBrushless);
     private final DutyCycleEncoder absEncoder = new DutyCycleEncoder(Constants.ABS_ENCODER_ID);
 
