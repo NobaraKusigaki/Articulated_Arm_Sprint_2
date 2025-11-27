@@ -74,11 +74,11 @@ public class RobotContainer {
             //======== INTAKE ======== 
 
         new Trigger(() -> systemController.getR1Button())
-        .whileTrue(new RunCommand(() -> intakeManager.intakeIn(0.7)))
+        .whileTrue(new RunCommand(() -> intakeManager.intakeIn(0.2)))
         .onFalse(new InstantCommand(() -> intakeManager.stop()));
 
         new Trigger(() -> systemController.getL1Button())
-        .whileTrue(new RunCommand(() -> intakeManager.intakeOut(-0.7)))
+        .whileTrue(new RunCommand(() -> intakeManager.intakeOut(-0.2)))
         .onFalse(new InstantCommand(() -> intakeManager.stop()));
 
     }
